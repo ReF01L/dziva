@@ -5,26 +5,58 @@
     <meta charset="utf-8"/>
     <title>{% block title %}ЖИВА{% endblock %}</title>
     <link href="{% static "scss/base.css" %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+    {% block styles %}{% endblock %}
 </head>
 <body>
-<div id="header">
-    <a href="/" class="logo">Жива</a>
-</div>
-<div id="subheader">
-    {% with total_items=cart|length %}
-        {% if total_items > 0 %}
-            Your cart:
-            <a href="{% url "cart:cart_detail" %}">
-                {{ total_items }} item{{ total_items|pluralize }},
-                ${{ cart.get_total_price }}
+{# TODO: При входе в профиль, изменять меню аутентификации #}
+<header>
+    <div class="main">
+        <div class="item">О магазине</div>
+        <div class="item">Доставка и оплата</div>
+        <div class="item">Избранное</div>
+    </div>
+    <div class="sign">
+        <span class="sign-in">Вход</span>
+        <span class="sign-up">Регистрация</span>
+    </div>
+</header>
+<div class="hero">
+    <div class="hero__left">
+        <div class="hero__left__logo">
+            <img src="{% static "img/logo.png" %}" alt="" class="hero__left__logo-img">
+            <div class="hero__left__logo-content">
+                <span>ЖИВА</span>
+                <a href="#">@dziva_nhk</a>
+            </div>
+        </div>
+        <button class="hero__left-btn">Каталог</button>
+    </div>
+    <div class="hero__middle">
+        <div class="hero__middle__items">
+            <div class="hero__middle__items-item">8-800-225-35-35</div>
+            <div class="hero__middle__items-item">ПН-ПТ: 10:00-19:00</div>
+            <div class="hero__middle__items-item">salushkin.ds@students.dvfu.ru</div>
+        </div>
+        <button class="hero__middle-btn">Заказать звонок</button>
+    </div>
+    <div class="hero__right">
+        <h2 class="hero__right-title">Ваша корзина:</h2>
+        {% with total_items=cart|length %}
+            <a class="hero__right-cart" href="{% url "cart:cart_detail" %}">
+                {{ total_items }} тов. / {{ cart.get_total_price }}$
             </a>
-        {% else %}
-            Your cart is empty.
-        {% endif %}
-    {% endwith %}
+        {% endwith %}
+        <button class="hero__right-btn">Оформить заказ</button>
+    </div>
 </div>
 <div id="content">
     {% block content %}{% endblock %}
 </div>
+<footer>
+
+</footer>
 </body>
 </html>
