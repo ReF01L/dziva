@@ -4,11 +4,11 @@
     {% if category %}{{ category.name }}{% else %}Products{% endif %}
 {% endblock %}
 {% block styles %}
-    <link rel="stylesheet" href="{% static "scss/list.css" %}">
+    <link href="{% static "scss/list.css" %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
-{#  TODO: Сделать красивый сайдбар  #}
-    <div id="sidebar">
+    {#  TODO: Сделать красивый сайдбар  #}
+    <div>
         <h3>Categories</h3>
         <ul>
             <li {% if not category %}class="selected"{% endif %}>
@@ -21,18 +21,36 @@
             {% endfor %}
         </ul>
     </div>
-    <div id="main" class="product-list">
-        <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
-        {% for product in products %}
-            <div class="item">
-                <a href="{{ product.get_absolute_url }}">
-                    <img src="
-                            {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-                </a>
-                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                <br>
-                ${{ product.price }}
-            </div>
-        {% endfor %}
+    <div class="list">
+        <h1 class="list-title">{% if category %}{{ category.name }}{% endif %}</h1>
+        <span class="list-show">Показать всё</span>
+        <div class="list__cards">
+            {% for product in products %}
+                <div class="list__card">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img class="list__card-image"
+                             src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}"
+                             alt="Product image">
+                    </a>
+                    <a class="list__card-name" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                    <span class="list__card-available">
+                    {% if product.available %}Есть в наличии
+                    {% else %}Нет в наличии{% endif %}
+                </span>
+                    <span class="list__card-price">${{ product.price }}</span>
+                    <div class="list__card__bottom">
+                        <div class="stepper" id="stepper-{{ product.id }}">
+                            <button class="stepper-add" onclick="step(event, true)">+</button>
+                            <span class="stepper-value" id="counter-{{ product.id }}"></span>
+                            <button class="stepper-min" onclick="step(event, false)">-</button>
+                        </div>
+                        <div class="list__card__bottom-btn">В корзину</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+    {% block extrahead %}
+        <script type="text/javascript" src="{% static 'js/stepper.js' %}"></script>
+    {% endblock extrahead %}
 {% endblock %}
