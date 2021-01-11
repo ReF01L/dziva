@@ -17,35 +17,60 @@
                 >
             </div>
             <div class="product__content__body">
-                <div class="product__content__body__cost">
-                    <div class="product__content__body__cost-cost">{{ product.price }}</div>
-                    <div class="product__content__body__cost-abailable">
-                        {% if product.available %}
-                            Есть в наличии
-                        {% else %}
-                            Нет в наличии
-                        {% endif %}
+                <div class="product__content__body__header">
+                    <div class="product__content__body__header__cost">
+                        <div class="product__content__body__header__cost-cost">{{ product.price }}</div>
+                        <div class="product__content__body__header__cost-abailable">
+                            {% if product.available %}
+                                Есть в наличии
+                            {% else %}
+                                Нет в наличии
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="product__content__body__header__count">
+                        <div class="stepper" id="stepper-{{ product.id }}">
+                            <button class="stepper-add" onclick="step(event, true)">+</button>
+                            <span class="stepper-value" id="counter-{{ product.id }}"></span>
+                            <button class="stepper-min" onclick="step(event, false)">-</button>
+                        </div>
+                        <div class="product__content__body__header__count-btn">В корзину</div>
+                    </div>
+                    <div class="product__content__body__header__contacts">
+                        <span>Заказ по телефону:</span>
+                        <span>8-800-255-35-35</span>
+                        <span>или</span>
+                        <div class="product__content__body__header__contacts__icons">
+                            <img class="product__content__body__header__contacts__icons-icon"
+                                src="{% static "img/no_image.png" %}">
+                            <img class="product__content__body__header__contacts__icons-icon"
+                                src="{% static "img/no_image.png" %}">
+                            <img class="product__content__body__header__contacts__icons-icon"
+                                src="{% static "img/no_image.png" %}">
+                        </div>
                     </div>
                 </div>
-                <div class="product__content__body__count">
-                    <div class="stepper" id="stepper-{{ product.id }}">
-                        <button class="stepper-add" onclick="step(event, true)">+</button>
-                        <span class="stepper-value" id="counter-{{ product.id }}"></span>
-                        <button class="stepper-min" onclick="step(event, false)">-</button>
+                <div class="product__content__body__main">
+                    <div class="product__content__body__main__header">
+                        <div class="product__content__body__main__header-title">Описание</div>
+                        <div class="product__content__body__main__header-title">Характеристики</div>
+                        <div class="product__content__body__main__header-title">Отзывы</div>
                     </div>
-                    <div class="product__content__body__count-btn">В корзину</div>
-                </div>
-                <div class="product__content__body__contacts">
-                    <span>Заказ по телефону:</span>
-                    <span>8-800-255-35-35</span>
-                    <span>или</span>
-                    <div class="product__content__body__contacts__icons">
-                        <img class="product__content__body__contacts__icons-icon"
-                            src="{% static "img/no_image.png" %}">
-                        <img class="product__content__body__contacts__icons-icon"
-                            src="{% static "img/no_image.png" %}">
-                        <img class="product__content__body__contacts__icons-icon"
-                            src="{% static "img/no_image.png" %}">
+                    <div class="product__content__body__main__content">
+                        <div class="product__content__body__main__content-title">Описание</div>
+                        <div class="product__content__body__main__content__item">
+                            <span>Пироженное на палочке</span> - Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Suspendisse vitae finibus sapien, at condimentum nisi. Sed pretium sapien sed est congue,
+                            consequat rutrum mi tempor. Vivamus pretium sagittis ipsum, eget cursus risus placerat gravida.
+                            Nunc malesuada lacus in sapien volutpat, quis cursus nulla pharetra.
+                        </div>
+                        <div class="product__content__body__main__content__item">
+                            <span>Способы употребления</span>
+                            <ul>
+                                {% comment %} TODO: Выводить способы употребления {% endcomment %}
+                            </ul>
+                        </div>
+                        <div class="product__content__body__main__content__item"></div>
                     </div>
                 </div>
             </div>
