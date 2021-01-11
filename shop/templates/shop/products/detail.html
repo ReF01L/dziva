@@ -3,6 +3,9 @@
 {% block title %}
     {{ product.name }}
 {% endblock %}
+{% block styles %}
+    <link href="{% static "scss/detail.css" %}" rel="stylesheet">
+{% endblock styles %}
 {% block content %}
     <div class="product">
         <div class="product-title">{{ product.name }}</div>
@@ -67,10 +70,14 @@
                         <div class="product__content__body__main__content__item">
                             <span>Способы употребления</span>
                             <ul>
-                                {% comment %} TODO: Выводить способы употребления {% endcomment %}
+                                {% for method in product.methods.all %}
+                                    <li>{{ method.method }}</li>
+                                {% endfor %}
                             </ul>
                         </div>
-                        <div class="product__content__body__main__content__item"></div>
+                        <div class="product__content__body__main__content__item">
+                            <span>Состав:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae finibus sapien, at condimentum nisi.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -90,4 +97,7 @@
         </form>
         {{ product.description|linebreaks }}
     </div> {% endcomment %}
+    {% block extrahead %}
+        <script type="text/javascript" src="{% static 'js/stepper.js' %}"></script>
+    {% endblock extrahead %}
 {% endblock %}

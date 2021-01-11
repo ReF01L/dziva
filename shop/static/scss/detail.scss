@@ -4,3 +4,30 @@ $white: #FFFFFF;
 $gray: rgba(63, 61, 86, 0.5);
 $light_yellow: rgba(250, 209, 80, 0.3);
 
+.product {
+    margin-top: 35px;
+    width: 100%;
+    &-title {
+        color: $dark;
+        font-weight: 600;
+        font-size: 48px;
+    }
+    &__content {
+        margin-top: 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &__image {
+            box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
+            background: $white;
+            &-img {
+                width: 410px;
+                height: 410px;
+                padding: 33px;
+            }
+        }
+        &__body {
+            color: $dark;
+        }
+    }
+}

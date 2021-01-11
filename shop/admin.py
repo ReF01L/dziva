@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Category, Product
+from .models import Category, Product, ProductMethods
+
+
+class MethodsInline(admin.TabularInline):
+    model = ProductMethods
+    raw_id_fields = ['product']
 
 
 @admin.register(Category)
@@ -14,3 +19,4 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ('price', 'available')
     list_filter = ('available', 'created', 'updated')
     prepopulated_fields = {'slug': ('name',)}
+    inlines = (MethodsInline,)

@@ -40,3 +40,8 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('shop:product_detail', args=(self.id, self.slug,))
+
+
+class ProductMethods(models.Model):
+    product = models.ForeignKey(Product, related_name='methods', on_delete=models.CASCADE)
+    method = models.CharField(max_length=100, verbose_name='Способ')
