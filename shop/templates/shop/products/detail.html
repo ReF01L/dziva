@@ -4,7 +4,54 @@
     {{ product.name }}
 {% endblock %}
 {% block content %}
-    <div class="product-detail">
+    <div class="product">
+        <div class="product-title">{{ product.name }}</div>
+        <div class="product__content">
+            <div class="product__content__image">
+                <img class="product__content__image-img"
+                     src="{% if product.image %}
+                            {{ product.image.url }}
+                          {% else %}
+                            {% static "img/no_image.png" %}
+                          {% endif %}"
+                >
+            </div>
+            <div class="product__content__body">
+                <div class="product__content__body__cost">
+                    <div class="product__content__body__cost-cost">{{ product.price }}</div>
+                    <div class="product__content__body__cost-abailable">
+                        {% if product.available %}
+                            Есть в наличии
+                        {% else %}
+                            Нет в наличии
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="product__content__body__count">
+                    <div class="stepper" id="stepper-{{ product.id }}">
+                        <button class="stepper-add" onclick="step(event, true)">+</button>
+                        <span class="stepper-value" id="counter-{{ product.id }}"></span>
+                        <button class="stepper-min" onclick="step(event, false)">-</button>
+                    </div>
+                    <div class="product__content__body__count-btn">В корзину</div>
+                </div>
+                <div class="product__content__body__contacts">
+                    <span>Заказ по телефону:</span>
+                    <span>8-800-255-35-35</span>
+                    <span>или</span>
+                    <div class="product__content__body__contacts__icons">
+                        <img class="product__content__body__contacts__icons-icon"
+                            src="{% static "img/no_image.png" %}">
+                        <img class="product__content__body__contacts__icons-icon"
+                            src="{% static "img/no_image.png" %}">
+                        <img class="product__content__body__contacts__icons-icon"
+                            src="{% static "img/no_image.png" %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% comment %} <div class="product-detail">
         <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
         <h1>{{ product.name }}</h1>
         <h2>
@@ -17,5 +64,5 @@
             <input type="submit" value="Add to cart">
         </form>
         {{ product.description|linebreaks }}
-    </div>
+    </div> {% endcomment %}
 {% endblock %}

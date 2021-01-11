@@ -167,6 +167,9 @@ $light_yellow: rgba(250, 209, 80, 0.3);
 
     &:first-child {
       padding-left: 0;
+      & a {
+        font-size: 22px;
+      }
     }
 
     &:last-child {
