@@ -248,3 +248,45 @@ header {
     }
   }
 }
+
+footer {
+  .cols {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 25px;
+    padding-top: 15px;
+    margin-top: 30px;
+    &__col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      a {
+        text-decoration: none;
+      }
+      &-logo {
+        & a {
+          color: $yellow;
+          font-size: 36px;
+          font-weight: bold;
+        }
+      }
+      &-sublogo {
+        & a {
+          color: $gray;
+          font-weight: bold;
+          font-size: 14px;
+        }
+        max-width: 255px;
+      }
+      &-item {
+        color: $dark;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      &:last-child {
+        align-items: flex-end;
+      }
+    }
+  }
+}

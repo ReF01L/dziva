@@ -333,4 +333,64 @@ header .sign-up {
   transition: 0.5s;
   width: 120%;
 }
+
+footer .cols {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding-bottom: 25px;
+  padding-top: 15px;
+  margin-top: 30px;
+}
+
+footer .cols__col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+footer .cols__col a {
+  text-decoration: none;
+}
+
+footer .cols__col-logo a {
+  color: #FAD150;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+footer .cols__col-sublogo {
+  max-width: 255px;
+}
+
+footer .cols__col-sublogo a {
+  color: rgba(63, 61, 86, 0.5);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+footer .cols__col-item {
+  color: #3F3D56;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+footer .cols__col:last-child {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
 /*# sourceMappingURL=base.css.map */
