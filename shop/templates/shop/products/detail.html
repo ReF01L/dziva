@@ -37,7 +37,7 @@
                             <span class="stepper-value" id="counter-{{ product.id }}"></span>
                             <button class="stepper-min" onclick="step(event, false)">-</button>
                         </div>
-                        <div class="product__content__body__header__count-btn">В корзину</div>
+                        <button class="product__content__body__header__count-btn">В корзину</button>
                     </div>
                     <div class="product__content__body__header__contacts">
                         <span>Заказ по телефону:</span>
@@ -59,13 +59,10 @@
                         <div class="product__content__body__main__header-title">Характеристики</div>
                         <div class="product__content__body__main__header-title">Отзывы</div>
                     </div>
-                    <div class="product__content__body__main__content">
+                    <div class="product__content__body__main__content active">
                         <div class="product__content__body__main__content-title">Описание</div>
                         <div class="product__content__body__main__content__item">
-                            <span>Пироженное на палочке</span> - Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Suspendisse vitae finibus sapien, at condimentum nisi. Sed pretium sapien sed est congue,
-                            consequat rutrum mi tempor. Vivamus pretium sagittis ipsum, eget cursus risus placerat gravida.
-                            Nunc malesuada lacus in sapien volutpat, quis cursus nulla pharetra.
+                            <span>{{ product.name }}</span> - {{ product.description }}
                         </div>
                         <div class="product__content__body__main__content__item">
                             <span>Способы употребления</span>
@@ -76,13 +73,51 @@
                             </ul>
                         </div>
                         <div class="product__content__body__main__content__item">
-                            <span>Состав:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae finibus sapien, at condimentum nisi.
+                            <span>Состав:</span> {{ product.structure }}
                         </div>
                     </div>
+
+                    <div class="product__content__body__main__content">
+                        <div class="product__content__body__main__content-title">Характеристики</div>
+                        <div class="product__content__body__main__content__item">
+                            <span>{{ product.name }}</span> - {{ product.description }}
+                        </div>
+                        <div class="product__content__body__main__content__item">
+                            <span>Способы употребления</span>
+                            <ul>
+                                {% for method in product.methods.all %}
+                                    <li>{{ method.method }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="product__content__body__main__content__item">
+                            <span>Состав:</span> {{ product.structure }}
+                        </div>
+                    </div>
+
+                    <div class="product__content__body__main__content">
+                        <div class="product__content__body__main__content-title">Отзывы</div>
+                        <div class="product__content__body__main__content__item">
+                            <span>{{ product.name }}</span> - {{ product.description }}
+                        </div>
+                        <div class="product__content__body__main__content__item">
+                            <span>Способы употребления</span>
+                            <ul>
+                                {% for method in product.methods.all %}
+                                    <li>{{ method.method }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="product__content__body__main__content__item">
+                            <span>Состав:</span> {{ product.structure }}
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+    {% comment %} TODO: заменить эту конструкцию на btn {% endcomment %}
     {% comment %} <div class="product-detail">
         <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
         <h1>{{ product.name }}</h1>
@@ -99,5 +134,6 @@
     </div> {% endcomment %}
     {% block extrahead %}
         <script type="text/javascript" src="{% static 'js/stepper.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/swap_frames.js' %}"></script>
     {% endblock extrahead %}
 {% endblock %}
