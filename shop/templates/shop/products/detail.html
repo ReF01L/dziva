@@ -79,20 +79,12 @@
 
                     <div class="product__content__body__main__content">
                         <div class="product__content__body__main__content-title">Характеристики</div>
-                        <div class="product__content__body__main__content__item">
-                            <span>{{ product.name }}</span> - {{ product.description }}
-                        </div>
-                        <div class="product__content__body__main__content__item">
-                            <span>Способы употребления</span>
-                            <ul>
-                                {% for method in product.methods.all %}
-                                    <li>{{ method.method }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="product__content__body__main__content__item">
-                            <span>Состав:</span> {{ product.structure }}
-                        </div>
+                        {% for key, value in product.get_characters.items %}
+                            <div class="product__content__body__main__content__char">
+                                <div class="product__content__body__main__content__char-title">{{ key }}</div>
+                                <div class="product__content__body__main__content__char-value">{{ value }}</div>
+                            </div>
+                        {% endfor %}
                     </div>
 
                     <div class="product__content__body__main__content">

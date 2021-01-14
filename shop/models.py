@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.forms.models import model_to_dict
 
 
 class Category(models.Model):
@@ -42,7 +43,40 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('shop:product_detail', args=(self.id, self.slug,))
 
+    def get_characters(self):
+        verbs = {obj.name: obj.verbose_name for obj in ProductCharacters._meta.get_fields() if obj.name != 'id' and obj.name != 'product'}
+        hm = model_to_dict(self.characters)
+        return {verbs[key]: hm[key] for key in verbs.keys()}
+
 
 class ProductMethods(models.Model):
     product = models.ForeignKey(Product, related_name='methods', on_delete=models.CASCADE)
     method = models.CharField(max_length=100, verbose_name='Способ')
+
+    def __str__(self):
+        return f'Способ употребления продукта: {self.product.name}'
+
+    class Meta:
+        verbose_name = 'Способ употребления'
+        verbose_name_plural = 'Способы употребления'
+
+
+class ProductCharacters(models.Model):
+    product = models.OneToOneField(Product, related_name='characters', on_delete=models.CASCADE)
+    protein = models.CharField(max_length=5, verbose_name='Белки', blank=True)
+    fats = models.CharField(max_length=5, verbose_name='Жиры', blank=True)
+    carb = models.CharField(max_length=5, verbose_name='Углеводы', blank=True)
+    cals = models.CharField(max_length=5, verbose_name='Каллорийность', blank=True)
+    weight = models.CharField(max_length=5, verbose_name='Вес нетто', blank=True)
+    pack = models.CharField(max_length=5, verbose_name='Упаковка', blank=True)
+    num_per_block = models.CharField(max_length=5, verbose_name='Количество в блоке', blank=True)
+    storage_period = models.CharField(max_length=5, verbose_name='Срок хранения', blank=True)
+    manufacturer = models.CharField(max_length=30, verbose_name='Произовдитель', blank=True)
+
+    def __str__(self):
+        return self.product.name
+
+    class Meta:
+        verbose_name = 'Характеристика продукта'
+        verbose_name_plural = 'Характеристики продукта'
+
