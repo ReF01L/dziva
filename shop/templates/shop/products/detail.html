@@ -79,12 +79,14 @@
 
                     <div class="product__content__body__main__content">
                         <div class="product__content__body__main__content-title">Характеристики</div>
-                        {% for key, value in product.get_characters.items %}
-                            <div class="product__content__body__main__content__char">
-                                <div class="product__content__body__main__content__char-title">{{ key }}</div>
-                                <div class="product__content__body__main__content__char-value">{{ value }}</div>
-                            </div>
-                        {% endfor %}
+                        <div class="product__content__body__main__content__char">
+                            {% for key, value in product.get_characters.items %}
+                                <div class="product__content__body__main__content__char__item">
+                                    <div class="product__content__body__main__content__char__item-title">{{ key }}</div>
+                                    <div class="product__content__body__main__content__char__item-value">{% if value %}{{ value }}{% else %}Отсутствует информация{% endif %}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
 
                     <div class="product__content__body__main__content">

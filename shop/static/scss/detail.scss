@@ -206,6 +206,27 @@ $light_yellow: rgba(250, 209, 80, 0.3);
                     }
                 }
                 &__content {
+                    &__char {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        // TODO: Сделать перемещение по position: absolute
+                        &__item {
+                            display: flex;
+                            justify-content: flex-start;
+                            color: $dark;
+                            margin: 7px 0;
+                            &-title {
+                                font-weight: 500;
+                                font-size: 14px;
+                                width: 200px;
+                            }
+                            &-value {
+                                font-weight: 300;
+                                font-size: 14px;
+                            }
+                        }
+                    }
                     &-title {
                         color: $dark;
                         font-weight: 600;
@@ -247,6 +268,7 @@ $light_yellow: rgba(250, 209, 80, 0.3);
                     opacity: 0;
                     padding: 0 10px 11px;
                     transition: 0.5s;
+                    width: 100%;
                 }
                 display: flex;
                 flex-direction: column;

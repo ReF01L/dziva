@@ -10,7 +10,8 @@ const shift_down = (elem, i) => {
 (() => {
     titles = Array.from(document.querySelectorAll('.product__content__body__main__header-title'))
     let frames = Array.from(document.querySelectorAll('.product__content__body__main__content'))
-    
+    // console.log(frames)
+
     titles.forEach((element, i) => {
         element.addEventListener('click', () => {
             let active_el = document.querySelector('.product__content__body__main__header-title.active')
